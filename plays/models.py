@@ -14,7 +14,7 @@ class Performance(models.Model):
     date = models.DateTimeField()
     duration = models.IntegerField()
     description = models.TextField()
-    poster = models.FileField()
+    poster = models.FileField(upload_to='posters/')
 
     def __str__(self):
         return self.title
