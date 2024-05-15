@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block title %}Оплата{% endblock %}
+
+{% block content %}
+    <h1 class="text-center my-5">Выберите способ оплаты</h1>
+    <div class="row">
+        <div class="col-md-6">
+            <a href="{% url 'credit_card_payment' %}" class="btn btn-primary btn-lg w-100 mb-3">Оплатить картой любого банка</a>
+        </div>
+        <div class="col-md-6">
+            <a href="{% url 'admin_payment' %}" class="btn btn-primary btn-lg w-100 mb-3">Оплатить посредством рассылки администрации</a>
+        </div>
+    </div>
+{% endblock %}

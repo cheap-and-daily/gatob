@@ -1,5 +1,6 @@
 from django.urls import reverse
 from .models import Profile
+from subscription.models import Subscription
 from .forms import LoginForm, RegisterForm, ProfileForm
 from django.http import HttpResponseRedirect
 from django.contrib.auth.models import auth
@@ -39,9 +40,7 @@ def register_view(request):
             auth_data = authenticate(request, email=user.email, password=form.cleaned_data.get('password'))
             if auth_data is not None:
                 login(request, auth_data)
-                return redirect('/')
-            else:
-                return redirect('/auth/login/')
+            return redirect('login')
         else:
             return render(request, 'user/register.html', {'form': form})
 
@@ -75,17 +74,19 @@ def profile_edit(request):
         return redirect('login')
 
 
+@login_required
 def profile_view(request):
-    if request.user.is_authenticated:
-        try:
-            profile = Profile.objects.get(user=request.user)
-        except Profile.DoesNotExist:
-            profile = Profile.objects.create(user=request.user)
+    try:
+        profile = Profile.objects.get(user=request.user)
+    except Profile.DoesNotExist:
+        profile = Profile.objects.create(user=request.user)
 
+    subscription = Subscription.objects.filter(user=request.user).first()
 
-        return render(request, 'user/profile.html', {'profile': profile})
-    else:
-        return redirect('login')
+    return render(request, 'user/profile.html', {
+        'profile': profile,
+        'subscription': subscription
+    })
 
 
 def user_view(request, slug):

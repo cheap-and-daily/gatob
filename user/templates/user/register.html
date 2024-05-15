@@ -2,37 +2,65 @@
 {% load static %}
 {% load crispy_forms_tags %} {% load static %} {% load crispy_forms_filters %}
 {% block content %}
-<br />
-<div class="container">
-  <div class="row">
-    <div class="col-sm-9 col-md-9 col-lg-7 mx-auto">
-      <div class="card card-signin my-5">
-        <div class="card-body">
-          <h5 class="card-title text-center"><b>Register</b></h5>
-          <form class="form-signin" method="POST">
-            {% csrf_token %}
-            <fieldset class="form-group">
-              <br />
-              {{ form|crispy }}
-            </fieldset>
-            <div class="form-group">
-              <button
-                class="btn btn-lg btn-primary btn-block text-uppercase"
-                type="submit"
-              >
-                Sign Up</button
-              ><br /><br />
+    <br/>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-9 col-md-9 col-lg-7 mx-auto">
+                <div class="card card-signin my-5">
+                    <div class="card-body">
+                        <h5 class="card-title text-center"><b>Регистрация</b></h5>
+                        <form class="form-signin" method="POST">
+                            {% csrf_token %}
+                            <fieldset class="form-group">
+                                <br/>
+                                {{ form|crispy }}
+                            </fieldset>
+                            <div class="form-group">
+                                <button
+                                        class="btn btn-lg btn-primary btn-block text-uppercase"
+                                        type="submit"
+                                >
+                                    Зарегистрироваться
+                                </button
+                                >
+                                <br/><br/>
+                            </div>
+                            <small
+                            ><p class="lead text-center">
+                                Уже зарегистрированы?
+                                <a href="{% url 'login' %}"><b>Войдите сейчас!</b></a>
+                            </p></small
+                            >
+                        </form>
+                    </div>
+                </div>
             </div>
-            <small
-              ><p class="lead text-center">
-                Already Registered?
-                <a href="{% url 'login' %}"><b>Login Now!</b></a>
-              </p></small
-            >
-          </form>
         </div>
-      </div>
     </div>
-  </div>
-</div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        function formatPhoneNumber() {
+            var phoneNumberInput = document.getElementById('id_phone');
+            var phoneNumber = phoneNumberInput.value.replace(/\D/g, '');
+
+            if (!phoneNumber.startsWith('7')) {
+                phoneNumber = '7' + phoneNumber;
+            }
+
+            phoneNumber = phoneNumber.slice(0, 11);
+
+            var formattedPhoneNumber = '+7';
+            for (var i = 1; i < phoneNumber.length; i++) {
+                if (i == 1 || i == 4 || i == 7 || i == 9) {
+                    formattedPhoneNumber += '-';
+                }
+                formattedPhoneNumber += phoneNumber.charAt(i);
+            }
+
+            phoneNumberInput.value = formattedPhoneNumber;
+        }
+
+        $('#id_phone').on('input', formatPhoneNumber);
+    </script>
+
 {% endblock content %}

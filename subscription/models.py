@@ -12,7 +12,7 @@ class Subscription(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     plan = models.CharField(max_length=20, choices=PLAN_CHOICES)
     price = models.DecimalField(max_digits=10, decimal_places=2)
-    visits = models.PositiveIntegerField()
+    visits = models.PositiveIntegerField(blank=True)
     priority_booking = models.BooleanField(default=True)
     ticket_discount = models.BooleanField(default=True)
     exclusive_events = models.BooleanField(default=True)

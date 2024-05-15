@@ -1,37 +1,55 @@
 {% extends 'base.html' %}
 
-{% block head %}
-    <title>Profile</title>
-{% endblock %}
+{% block title %}Profile{% endblock %}
 
 {% block content %}
-    <div class="container-fluid">
-    </div>
-    <div class="container">
-        <div class="row">
-            <div class="col-12 my-4">
-                <div class="col-12">
-                    <div class="card mb-4">
-                        <div class="card-header">
-                            <h3 class="card-title">{{ profile.user.username }}</h3>
-                        </div>
-                        <div class="card-body">
-                            <div class="profile-avatar mb-2">
-                                {% if profile.avatar %}
-                                    <img src="{{ profile.avatar.url }}" alt="Avatar">
-                                {% else %}
-                                    <span style="display: flex; justify-content: center; align-items: center; width: 100%; height: 100%;">No Avatar</span>
-                                {% endif %}
-                            </div>
-                            <p class="card-text">{{ profile.bio }}</p>
-                        </div>
-                        <div class="card-footer text-muted">
-                            <a href="{% url 'edit_profile' %}" class="btn btn-primary">Edit Profile</a>
-                        </div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 my-4">
+            <div class="card mb-4">
+                <div class="card-header">
+                    <h3 class="card-title">{{ profile.user.username }}</h3>
+                </div>
+                <div class="card-body">
+                    <div class="profile-avatar mb-2 text-center">
+                        {% if profile.avatar %}
+                            <img src="{{ profile.avatar.url }}" alt="Avatar" class="img-fluid rounded-circle" style="max-width: 150px;">
+                        {% else %}
+                            <span style="display: flex; justify-content: center; align-items: center; width: 150px; height: 150px; border: 1px solid #ddd; border-radius: 50%;">No Avatar</span>
+                        {% endif %}
                     </div>
+                    <p class="card-text">{{ profile.bio }}</p>
+                </div>
+                <div class="card-footer text-muted">
+                    <a href="{% url 'edit_profile' %}" class="btn btn-primary">Редактировать профиль</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 my-4">
+            <div class="card mb-4">
+                <div class="card-header">
+                    <h3 class="card-title">Ваша подписка:</h3>
+                </div>
+                <div class="card-body">
+                    {% if subscription %}
+                        <h4 class="card-title">{{ subscription.get_plan_display }}</h4>
+                        <p class="card-text">Цена: {{ subscription.price }} тг</p>
+                        <p class="card-text">Количество посещений: {{ subscription.visits }}</p>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">Приоритетное бронирование: {% if subscription.priority_booking %}Да{% else %}Нет{% endif %}</li>
+                            <li class="list-group-item">Скидки на билеты: {% if subscription.ticket_discount %}Да{% else %}Нет{% endif %}</li>
+                            <li class="list-group-item">Эксклюзивные мероприятия: {% if subscription.exclusive_events %}Да{% else %}Нет{% endif %}</li>
+                            <li class="list-group-item">Подарки и бонусы: {% if subscription.gifts_and_bonuses %}Да{% else %}Нет{% endif %}</li>
+                            <li class="list-group-item">Неограниченные посещения: {% if subscription.unlimited_visits %}Да{% else %}Нет{% endif %}</li>
+                            <li class="list-group-item">Специальный сертификат: {% if subscription.special_certificate %}Да{% else %}Нет{% endif %}</li>
+                        </ul>
+                    {% else %}
+                        <p class="card-text">У вас нет активной подписки.</p>
+                        <a href="/subscription" class="btn btn-primary">Оформить подписку</a>
+                    {% endif %}
                 </div>
             </div>
         </div>
     </div>
-
+</div>
 {% endblock %}

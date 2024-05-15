@@ -23,5 +23,26 @@ def add_comment(request, news_id):
     return redirect('news_feed')
 
 
+@login_required
+@require_POST
+def delete_comment(request, comment_id):
+    comment = get_object_or_404(Comment, id=comment_id)
+    if request.user == comment.user:
+        comment.delete()
+    return redirect('news_feed')
+
+
 def pricing(request):
     return render(request, 'core/subscriptions.html')
+
+
+def payment(request):
+    return render(request, 'core/payment.html')
+
+
+def credit_card_payment(request):
+    return render(request, 'core/credit_card_payment.html')
+
+
+def admin_payment(request):
+    return render(request, 'core/admin_payment.html')
