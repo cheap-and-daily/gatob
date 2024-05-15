@@ -70,9 +70,9 @@ def profile_edit(request):
                     profile.avatar = request.FILES['avatar']
                     print('Avatar uploaded:', profile.avatar)
 
-                return HttpResponseRedirect(reverse('auth:profile'))
+                return HttpResponseRedirect(reverse('profile'))
     else:
-        return redirect('auth:login')
+        return redirect('login')
 
 
 def profile_view(request):
@@ -82,15 +82,14 @@ def profile_view(request):
         except Profile.DoesNotExist:
             profile = Profile.objects.create(user=request.user)
 
-        photos = [getattr(profile, f'photo_{i}') for i in range(1, 7) if getattr(profile, f'photo_{i}')]
 
-        return render(request, 'user/profile.html', {'profile': profile, 'photos': photos})
+        return render(request, 'user/profile.html', {'profile': profile})
     else:
-        return redirect('auth:login')
+        return redirect('login')
 
 
 def user_view(request, slug):
     viewed_user = get_object_or_404(Profile, username=slug)
     if request.user.is_authenticated and request.user == viewed_user:
-        return redirect('auth:profile')
-    return profile_view(request, slug)
+        return redirect('profile')
+    return profile_view(request)

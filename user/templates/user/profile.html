@@ -6,11 +6,6 @@
 
 {% block content %}
     <div class="container-fluid">
-        <div class="row">
-            <div class="col-12">
-                {% include 'header.html' %}
-            </div>
-        </div>
     </div>
     <div class="container">
         <div class="row">
@@ -31,7 +26,7 @@
                             <p class="card-text">{{ profile.bio }}</p>
                         </div>
                         <div class="card-footer text-muted">
-                            <a href="{% url 'auth:edit_profile' %}" class="btn btn-primary">Edit Profile</a>
+                            <a href="{% url 'edit_profile' %}" class="btn btn-primary">Edit Profile</a>
                         </div>
                     </div>
                 </div>

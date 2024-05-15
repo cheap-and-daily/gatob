@@ -41,19 +41,6 @@
                                 {{ form.bio.errors }}
                             </div>
                         </div>
-                        <div>
-                            <label for="id_photos" class="form-label">Upload up to 6 photos:</label>
-                            <input name="photos" class="form-control" type="file" id="id_photos" accept="image/*"
-                                   multiple>
-                            {{ form.photos.errors }}
-                            <div class="preview-wrapper">
-                                {% for photo in profile.photos.all %}
-                                    <div class="preview-item">
-                                        <img src="{{ photo.image.url }}" alt="{{ photo.image.name }}">
-                                    </div>
-                                {% endfor %}
-                            </div>
-                        </div>
                         <button class="btn btn-primary d-block col-12 mt-2" type="submit">Save</button>
                     </form>
 
