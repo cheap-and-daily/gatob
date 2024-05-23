@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ form.instance.id|default:"Новый спектакль" }}{% endblock %}
+
+{% block content %}
+    <h1 class="my-5">{{ form.instance.id|default:"Создание нового спектакля" }}</h1>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="form-group">
+            {{ form.non_field_errors }}
+            {{ form.title.label_tag }}
+            {{ form.title }}
+            {{ form.title.errors }}
+        </div>
+        <div class="form-group">
+            {{ form.description.label_tag }}
+            {{ form.description }}
+            {{ form.description.errors }}
+        </div>
+        <div class="form-group">
+            {{ form.date.label_tag }}
+            {{ form.date }}
+            {{ form.date.errors }}
+        </div>
+        <div class="form-group">
+            {{ form.actors.label_tag }}
+            {{ form.actors|safe }}
+            {{ form.actors.errors }}
+        </div>
+        <div class="form-group">
+            {{ form.poster.label_tag }}
+            {{ form.poster }}
+            {{ form.poster.errors }}
+        </div>
+        <button type="submit" class="btn btn-primary">Сохранить</button>
+    </form>
+{% endblock %}

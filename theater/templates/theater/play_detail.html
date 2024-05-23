@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ play.title }}{% endblock %}
+
+{% block content %}
+    <h1 class="my-5">{{ play.title }}</h1>
+    <div class="row">
+        <div class="col-md-8">
+            <img src="{{ play.poster.url }}" class="img-fluid" alt="{{ play.title }}">
+        </div>
+        <div class="col-md-4">
+            <h2>Описание</h2>
+            <p>{{ play.description }}</p>
+            <h2>Дата</h2>
+            <p>{{ play.date }}</p>
+            <h2>Актеры</h2>
+            <ul>
+                {% for actor in play.actors.all %}
+                    <li><a href="{% url 'actor_detail' actor.id %}">{{ actor.first_name }} {{ actor.last_name }}</a></li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+{% endblock %}

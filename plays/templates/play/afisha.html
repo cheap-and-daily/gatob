@@ -16,32 +16,38 @@
                         <p class="text-muted">Продолжительность: {{ performance.duration|duration_display }}</p>
                         <p class="card-text">{{ performance.description }}</p>
                         <div class="mt-auto">
+                            <a href="{% url 'play_detail' performance.id %}" class="btn btn-sm btn-outline-secondary mb-3">Подробнее</a>
+                            <div class="mx-2"></div>
                             <a href="#" class="btn btn-warning btn-lg btn-block w-100">Купить билет</a>
                         </div>
                     </div>
                 </div>
             </div>
             {% if forloop.counter|divisibleby:3 and not forloop.last %}
-                </div><div class="row row-cols-1 row-cols-md-3 g-4">
+                </div>
+                <div class="row row-cols-1 row-cols-md-3 g-4">
             {% endif %}
         {% endfor %}
-    </div>
+        </div>
 {% endblock %}
 
 {% block extra_css %}
-<style>
-    .card {
-        margin-bottom: 2rem;
-    }
-    .card-body {
-        display: flex;
-        flex-direction: column;
-    }
-    .card-title {
-        font-size: 1.5rem;
-    }
-    .lead {
-        font-size: 1.25rem;
-    }
-</style>
+    <style>
+        .card {
+            margin-bottom: 2rem;
+        }
+
+        .card-body {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card-title {
+            font-size: 1.5rem;
+        }
+
+        .lead {
+            font-size: 1.25rem;
+        }
+    </style>
 {% endblock %}

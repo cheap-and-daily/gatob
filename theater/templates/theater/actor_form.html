@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ form.instance.id|default:"Новый актер" }}{% endblock %}
+
+{% block content %}
+    <h1 class="my-5">{{ form.instance.id|default:"Создание нового актера" }}</h1>
+    <form method="post">
+        {% csrf_token %}
+        <div class="form-group">
+            {{ form.non_field_errors }}
+            {{ form.first_name.label_tag }}
+            {{ form.first_name }}
+            {{ form.first_name.errors }}
+        </div>
+        <div class="form-group">
+            {{ form.last_name.label_tag }}
+            {{ form.last_name }}
+            {{ form.last_name.errors }}
+        </div>
+        <div class="form-group">
+            {{ form.biography.label_tag }}
+            {{ form.biography }}
+            {{ form.biography.errors }}
+        </div>
+        <button type="submit" class="btn btn-primary">Сохранить</button>
+    </form>
+{% endblock %}

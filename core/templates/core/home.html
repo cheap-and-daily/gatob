@@ -16,14 +16,19 @@
                             <div class="btn-group">
                                 <a href="#" class="btn btn-sm btn-outline-secondary">Купить билет</a>
                             </div>
+                            <div class="btn-group">
+                                <a href="{% url 'play_detail' performance.id %}"
+                                   class="btn btn-sm btn-outline-secondary">Подробнее</a>
+                            </div>
                             <small class="text-muted">Дата: {{ performance.date }}</small>
                         </div>
                     </div>
                 </div>
             </div>
             {% if forloop.counter|divisibleby:3 and not forloop.last %}
-                </div><div class="row">
+                </div>
+                <div class="row">
             {% endif %}
         {% endfor %}
-    </div>
+        </div>
 {% endblock %}

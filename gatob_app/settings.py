@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     "user",
     "core",
     "plays",
+    "theater",
     "subscription",
 
     "crispy_forms",

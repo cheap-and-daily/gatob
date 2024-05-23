@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ actor.first_name }} {{ actor.last_name }}{% endblock %}
+
+{% block content %}
+    <h1 class="my-5">{{ actor.first_name }} {{ actor.last_name }}</h1>
+    <h2>Биография</h2>
+    <p>{{ actor.biography }}</p>
+    <h2>Спектакли</h2>
+    <div class="row">
+        {% for play in actor.plays.all %}
+            <div class="col-md-4">
+                <div class="card mb-4 shadow-sm">
+                    <img src="{{ play.poster.url }}" class="card-img-top" alt="{{ play.title }}">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ play.title }}</h5>
+                        <p class="card-text">{{ play.description }}</p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="btn-group">
+                                <a href="{% url 'play_detail' play.id %}" class="btn btn-sm btn-outline-secondary">Подробнее</a>
+                            </div>
+                            <small class="text-muted">Дата: {{ play.date }}</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% if forloop.counter|divisibleby:3 and not forloop.last %}
+                </div><div class="row">
+            {% endif %}
+        {% endfor %}
+    </div>
+{% endblock %}
