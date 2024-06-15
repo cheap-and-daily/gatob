@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+{% block title %}Interview{% endblock %}
+
+{% block content %}
+
+<div class="container mt-5">
+    <div class="card-deck">
+        <!-- Card 1 -->
+        <div class="card mb-3">
+            <h3 class="card-header">За кулисами</h3>
+            <div class="card-body">
+                <p class="card-text">За 30 минут до спектакля вы можете заглянуть за кулисы и взглянуть на
+                    готовую сцену и реквизит. Это короткое видео позволит вам окунуться в атмосферу театра прямо
+                    перед началом представления, подготавливая вас к зрелищу, которое вы собираетесь
+                    увидеть.</p>
+            </div>
+            <div class="card-body">
+                <a href="/media/backstage.mp4" class="card-link">Смотреть видео</a>
+            </div>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="card mb-3">
+            <h3 class="card-header">Работа в театре</h3>
+            <div class="card-body">
+                <p class="card-text">Екатерина Ченцова, руководитель PR службы театра, делится своим взглядом на
+                    работу в театре оперы и балета, раскрывая роль PR в поддержании репутации и привлечении
+                    аудитории.</p>
+            </div>
+            <div class="card-body">
+                <a href="/media/work.mp4" class="card-link">Смотреть видео</a>
+            </div>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="card mb-3">
+            <h3 class="card-header">Рекомендации</h3>
+            <div class="card-body">
+                <p class="card-text">Екатерина Ченцова представляет визитные карточки театра оперы и балета, а
+                    также дает ценные советы и рекомендации новым зрителям, помогая им выбирать наиболее
+                    подходящие для себя спектакли.</p>
+            </div>
+            <div class="card-body">
+                <a href="/media/recommend.mp4" class="card-link">Смотреть видео</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

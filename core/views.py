@@ -46,3 +46,8 @@ def credit_card_payment(request):
 
 def admin_payment(request):
     return render(request, 'core/admin_payment.html')
+
+
+def interview_view(request):
+    return render(request, 'core/interview.html')
+

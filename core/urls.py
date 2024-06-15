@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import news_feed, add_comment, delete_comment, pricing, payment, credit_card_payment, admin_payment
+from .views import news_feed, add_comment, delete_comment, pricing, payment, credit_card_payment, admin_payment, interview_view
 from plays.views import performances_list
 
 urlpatterns = [
@@ -11,4 +11,5 @@ urlpatterns = [
     path('payment/', payment, name='payment'),
     path('payment/credit-card/', credit_card_payment, name='credit_card_payment'),
     path('payment/admin-payment/', admin_payment, name='admin_payment'),
+    path('interview/', interview_view, name='interview'),
 ]
